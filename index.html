@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +27,29 @@
         header p {
             font-size: 1.2em;
             margin: 10px 0;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #3498db;
         }
         section {
             max-width: 800px;
@@ -60,6 +83,7 @@
         @media (max-width: 600px) {
             header { padding: 40px 10px; }
             section { margin: 20px; padding: 15px; }
+            nav li { display: block; margin: 10px 0; }
         }
     </style>
 </head>
@@ -68,6 +92,18 @@
         <h1>Hello, I'm Ishaan Inabathini</h1>
         <p>A passionate explorer at the intersection of cognitive science, computer science, and machine learning. Let's connect: <a href="mailto:iinabath@andrew.cmu.edu">iinabath@andrew.cmu.edu</a></p>
     </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#research">Research Experience</a></li>
+            <li><a href="#projects">Key Projects</a></li>
+            <li><a href="#honors">Honors and Recognition</a></li>
+            <li><a href="#volunteering">Volunteering</a></li>
+            <li><a href="#links">Online Mentions & Links</a></li>
+        </ul>
+    </nav>
 
     <section id="about">
         <h2>About Me</h2>
@@ -129,3 +165,4 @@
     </footer>
 </body>
 </html>
+```
