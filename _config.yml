@@ -1,0 +1,30 @@
+# Site settings
+title: Personal Notes on ML Papers
+description: ""
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: /papers/:title/
+
+# Pagination
+paginate: 20
+paginate_path: "/page/:num/"
+
+# Collections
+collections:
+  posts:
+    output: true
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+
+# Theme
+theme: null
+

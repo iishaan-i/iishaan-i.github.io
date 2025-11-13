@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<article class="paper-post">
+  <header class="paper-header">
+    <h1 class="paper-title">{{ page.title }}</h1>
+    
+    {% if page.authors %}
+    <p class="paper-authors">{{ page.authors }}</p>
+    {% endif %}
+    
+    {% if page.paper_url %}
+    <p class="paper-link">
+      <a href="{{ page.paper_url }}" target="_blank" rel="noopener">Read paper →</a>
+    </p>
+    {% endif %}
+    
+    <div class="paper-tags">
+      {% for tag in page.tags %}
+      <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    
+    <div class="paper-meta">
+      <div class="paper-dates">
+        <span>Posted: {{ page.date | date: "%b %d, %Y" }}</span>
+        {% if page.paper_date %}
+        <span class="paper-publish-date">Paper: {{ page.paper_date }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="paper-notes">
+    {{ content }}
+  </div>
+</article>
+
+<nav class="post-navigation">
+  <a href="{{ '/' | relative_url }}" class="back-link">← Back to all papers</a>
+</nav>
+
