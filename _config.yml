@@ -6,11 +6,11 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
-permalink: /papers/:title/
+permalink: /notes/papers/:title/
 
 # Pagination
 paginate: 20
-paginate_path: "/page/:num/"
+paginate_path: "/notes/page/:num/"
 
 # Collections
 collections:
