@@ -2,7 +2,7 @@
 title: Personal Notes on ML Papers
 description: ""
 url: "https://iishaan-i.github.io"
-baseurl: "/blog"
+baseurl: ""
 
 # Build settings
 markdown: kramdown

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+</head>
+<body>
+  <div class="container">
+    <nav class="site-nav">
+      <a href="/home-page.html" class="nav-link current">Home</a>
+      <span class="nav-separator">·</span>
+      <a href="/" class="nav-link">Notes</a>
+    </nav>
+    
+    <main class="home-content">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
+
