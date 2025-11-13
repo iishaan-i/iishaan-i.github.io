@@ -1,8 +1,8 @@
 # Site settings
 title: Personal Notes on ML Papers
 description: ""
-url: ""
-baseurl: ""
+url: "https://iishaan-i.github.io"
+baseurl: "/blog"
 
 # Build settings
 markdown: kramdown

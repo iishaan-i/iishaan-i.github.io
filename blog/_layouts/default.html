@@ -8,8 +8,14 @@
 </head>
 <body>
   <div class="container">
+    <nav class="site-nav">
+      <a href="/" class="nav-link">Home</a>
+      <span class="nav-separator">·</span>
+      <a href="/blog" class="nav-link current">Notes</a>
+    </nav>
+    
     <header class="site-header">
-      <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <h1 class="site-title">{{ site.title }}</h1>
       <p class="site-description">{{ site.description }}</p>
     </header>
 

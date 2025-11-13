@@ -22,22 +22,43 @@ body {
   padding: 60px 30px;
 }
 
+/* Navigation */
+.site-nav {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+.nav-link {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #333;
+}
+
+.nav-link.current {
+  color: #333;
+}
+
+.nav-separator {
+  margin: 0 12px;
+  color: #ccc;
+}
+
 /* Header */
 .site-header {
   margin-bottom: 36px;
   text-align: center;
 }
 
-.site-title a {
+.site-title {
   font-size: 32px;
   font-weight: 600;
   color: #333;
-  text-decoration: none;
   letter-spacing: -0.5px;
-}
-
-.site-title a:hover {
-  color: #555;
 }
 
 .site-description {
