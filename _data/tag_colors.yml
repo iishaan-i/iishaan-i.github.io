@@ -1,0 +1,15 @@
+# Tag color overrides for the paper-notes index.
+#
+# By default each tag is assigned a color from the 8-color palette
+# deterministically via sha256(tag) mod 8. Use this file to pin a specific
+# tag to a specific color when the automatic pick is unsatisfying.
+#
+# Available palette colors:
+#   slate · plum · sand · moss · rose · teal · ochre · mauve
+#
+# Example:
+# overrides:
+#   Mechanistic Interpretability: plum
+#   Reasoning Models: moss
+
+overrides: {}

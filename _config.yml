@@ -1,12 +1,19 @@
 # Site settings
-title: Personal Notes on ML Papers
-description: ""
+title: Personal Paper Notes
+description: "Personal notes on recent papers - short and for my own reference"
 url: "https://iishaan-i.github.io"
 baseurl: ""
+lang: en
 
 # Build settings
 markdown: kramdown
 permalink: /notes/papers/:title/
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
 # Pagination
 paginate: 20

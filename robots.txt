@@ -1,0 +1,7 @@
+---
+# Front matter is required so Jekyll processes this file and the
+# Liquid expressions below resolve against _config.yml at build time.
+---
+User-agent: *
+Allow: /
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml

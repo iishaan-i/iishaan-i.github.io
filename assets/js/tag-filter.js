@@ -1,59 +1,68 @@
-// Tag filtering with AND logic
-(function() {
+// Tag filtering with AND logic. Tag color classes are mirrored from the
+// rendered post-entry chips so the filter bar matches the cards exactly.
+(function () {
   'use strict';
-  
+
   const activeTags = new Set();
-  
-  // Collect all unique tags from posts
+
+  function buildTagColorMap() {
+    const colors = {};
+    document.querySelectorAll('.post-entry .post-tags .tag').forEach((chip) => {
+      const tag = chip.getAttribute('data-tag');
+      if (!tag) return;
+      const colorClass = Array.from(chip.classList).find(
+        (c) => c.startsWith('tag-') && c !== 'tag'
+      );
+      if (colorClass) colors[tag] = colorClass;
+    });
+    return colors;
+  }
+
   function getAllTags() {
     const posts = document.querySelectorAll('.post-entry');
     const tagsSet = new Set();
-    
-    posts.forEach(post => {
+    posts.forEach((post) => {
       const tagsAttr = post.getAttribute('data-tags');
-      if (tagsAttr) {
-        const tags = tagsAttr.split(',').map(t => t.trim()).filter(t => t);
-        tags.forEach(tag => tagsSet.add(tag));
-      }
+      if (!tagsAttr) return;
+      tagsAttr
+        .split(',')
+        .map((t) => t.trim())
+        .filter((t) => t)
+        .forEach((tag) => tagsSet.add(tag));
     });
-    
     return Array.from(tagsSet).sort();
   }
-  
-  // Create tag filter buttons
+
   function createTagFilterBar() {
     const tagFilterBar = document.getElementById('tagFilterBar');
     if (!tagFilterBar) return;
-    
+
+    const colors = buildTagColorMap();
     const allTags = getAllTags();
-    
-    allTags.forEach(tag => {
+
+    allTags.forEach((tag) => {
       const tagButton = document.createElement('span');
-      tagButton.className = 'tag';
+      const colorClass = colors[tag];
+      tagButton.className = colorClass ? `tag ${colorClass}` : 'tag';
       tagButton.setAttribute('data-tag', tag);
       tagButton.textContent = tag;
       tagButton.addEventListener('click', () => toggleTag(tag));
       tagFilterBar.appendChild(tagButton);
     });
   }
-  
-  // Toggle tag selection
+
   function toggleTag(tag) {
     if (activeTags.has(tag)) {
       activeTags.delete(tag);
     } else {
       activeTags.add(tag);
     }
-    
     updateTagButtons();
     filterPosts();
   }
-  
-  // Update visual state of tag buttons
+
   function updateTagButtons() {
-    const tagButtons = document.querySelectorAll('.tag-filter-bar .tag');
-    
-    tagButtons.forEach(button => {
+    document.querySelectorAll('.tag-filter-bar .tag').forEach((button) => {
       const tag = button.getAttribute('data-tag');
       if (activeTags.has(tag)) {
         button.classList.add('active');
@@ -62,33 +71,28 @@
       }
     });
   }
-  
-  // Filter posts based on active tags (AND logic)
+
   function filterPosts() {
     const posts = document.querySelectorAll('.post-entry');
-    
-    // If no tags are active, show all posts
+
     if (activeTags.size === 0) {
-      posts.forEach(post => {
-        post.classList.remove('hidden');
-      });
+      posts.forEach((post) => post.classList.remove('hidden'));
       return;
     }
-    
-    // AND logic: post must have ALL active tags
-    posts.forEach(post => {
+
+    posts.forEach((post) => {
       const tagsAttr = post.getAttribute('data-tags');
       if (!tagsAttr) {
         post.classList.add('hidden');
         return;
       }
-      
-      const postTags = tagsAttr.split(',').map(t => t.trim()).filter(t => t);
-      const postTagsSet = new Set(postTags);
-      
-      // Check if post has ALL active tags
-      const hasAllTags = Array.from(activeTags).every(tag => postTagsSet.has(tag));
-      
+      const postTags = new Set(
+        tagsAttr
+          .split(',')
+          .map((t) => t.trim())
+          .filter((t) => t)
+      );
+      const hasAllTags = Array.from(activeTags).every((tag) => postTags.has(tag));
       if (hasAllTags) {
         post.classList.remove('hidden');
       } else {
@@ -96,10 +100,6 @@
       }
     });
   }
-  
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    createTagFilterBar();
-  });
-})();
 
+  document.addEventListener('DOMContentLoaded', createTagFilterBar);
+})();

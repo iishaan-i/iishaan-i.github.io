@@ -5,29 +5,32 @@ layout: default
 <article class="paper-post">
   <header class="paper-header">
     <h1 class="paper-title">{{ page.title }}</h1>
-    
-    {% if page.authors %}
-    <p class="paper-authors">{{ page.authors }}</p>
+
+    {% if page.rating %}
+    <p class="paper-rating">
+      <span class="rating-number">{{ page.rating }}/7</span>
+      <span class="rating-sep">·</span>
+      <span class="rating-label">{{ page.rating_label }}</span>
+    </p>
     {% endif %}
-    
+
     {% if page.paper_url %}
     <p class="paper-link">
       <a href="{{ page.paper_url }}" target="_blank" rel="noopener">Read paper →</a>
     </p>
     {% endif %}
-    
+
+    {% if page.tag_data %}
     <div class="paper-tags">
-      {% for tag in page.tags %}
-      <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+      {% for t in page.tag_data %}
+      <span class="tag tag-{{ t.color }}" data-tag="{{ t.name }}">{{ t.name }}</span>
       {% endfor %}
     </div>
-    
+    {% endif %}
+
     <div class="paper-meta">
       <div class="paper-dates">
         <span>Posted: {{ page.date | date: "%b %d, %Y" }}</span>
-        {% if page.paper_date %}
-        <span class="paper-publish-date">Paper: {{ page.paper_date }}</span>
-        {% endif %}
       </div>
     </div>
   </header>
@@ -40,4 +43,3 @@ layout: default
 <nav class="post-navigation">
   <a href="/notes/" class="back-link">← Back to all papers</a>
 </nav>
-

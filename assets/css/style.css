@@ -71,11 +71,10 @@ body {
 }
 
 .tags-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 20px;
+  align-items: baseline;
 }
 
 .tags-label {
@@ -119,35 +118,80 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* Tag Colors - Elegant, muted palette */
-.tag[data-tag="LLM"] {
+/* Tag palette - elegant, muted, 8 hue families */
+.tag-slate {
   background-color: #F0F3F8;
   border-color: #CDD6E3;
   color: #4A5A6E;
 }
 
-.tag[data-tag="Generative Modeling"] {
+.tag-plum {
   background-color: #F3F0F7;
   border-color: #D8D0E0;
   color: #5E5470;
 }
 
-.tag[data-tag="Architecture"] {
+.tag-sand {
   background-color: #F5F0E8;
   border-color: #DACED0;
   color: #6B5E4A;
 }
 
-.tag[data-tag="RL/Reasoning"] {
+.tag-moss {
   background-color: #F0F5F2;
   border-color: #D0DED5;
   color: #4E6356;
 }
 
-.tag[data-tag="Interpretability"] {
+.tag-rose {
   background-color: #F6F0F4;
   border-color: #DFD0D8;
   color: #6B5460;
+}
+
+.tag-teal {
+  background-color: #ECF4F3;
+  border-color: #C8DCD9;
+  color: #466364;
+}
+
+.tag-ochre {
+  background-color: #F5F2E5;
+  border-color: #DDD7B8;
+  color: #66603E;
+}
+
+.tag-mauve {
+  background-color: #F1ECF4;
+  border-color: #CFC3D5;
+  color: #5E4F66;
+}
+
+/* Rating */
+.post-rating,
+.paper-rating {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.post-rating .rating-number,
+.paper-rating .rating-number {
+  color: #444;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-rating .rating-sep,
+.paper-rating .rating-sep {
+  margin: 0 6px;
+  color: #bbb;
+}
+
+.paper-rating {
+  font-size: 14px;
+  margin-bottom: 12px;
 }
 
 /* Posts Container */
@@ -343,6 +387,47 @@ body {
   margin-bottom: 10px;
 }
 
+/* Kramdown footnotes block, used as a References section */
+.paper-notes .footnotes {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #555;
+}
+
+.paper-notes .footnotes::before {
+  content: "References";
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.paper-notes .footnotes hr {
+  display: none;
+}
+
+.paper-notes .footnotes ol {
+  margin-left: 20px;
+}
+
+.paper-notes .footnotes li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+
+.paper-notes .footnotes li p {
+  display: inline;
+  margin: 0;
+}
+
+/* Math (KaTeX) breathing room */
+.paper-notes .katex-display {
+  margin: 16px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 /* Post Navigation */
 .post-navigation {
   margin-top: 60px;
@@ -414,9 +499,13 @@ body {
     font-size: 28px;
   }
   
-  .post-entry {
+  .post-entry,
+  .tags-section {
     grid-template-columns: 70px 1fr;
     gap: 16px;
+  }
+
+  .post-entry {
     margin-bottom: 28px;
     padding-bottom: 28px;
   }

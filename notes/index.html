@@ -22,29 +22,34 @@ pagination:
         {{ post.date | date: "%b %Y" }}
       </time>
     </div>
-    
+
     <div class="post-content">
       <div class="post-title-line">
         <h2 class="post-title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h2>
+        {% if post.paper_url %}
         <div class="post-inline-meta">
-          {% if post.paper_date %}
-          <span class="paper-date-inline">{{ post.paper_date }}</span>
-          {% endif %}
-          {% if post.paper_url %}
           <a href="{{ post.paper_url }}" target="_blank" rel="noopener" class="paper-link-inline">paper →</a>
-          {% endif %}
         </div>
+        {% endif %}
       </div>
-      
-      <p class="post-summary">{{ post.summary }}</p>
-      
+
+      {% if post.rating %}
+      <p class="post-rating">
+        <span class="rating-number">{{ post.rating }}/7</span>
+        <span class="rating-sep">·</span>
+        <span class="rating-label">{{ post.rating_label }}</span>
+      </p>
+      {% endif %}
+
+      {% if post.tag_data %}
       <div class="post-tags">
-        {% for tag in post.tags %}
-        <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+        {% for t in post.tag_data %}
+        <span class="tag tag-{{ t.color }}" data-tag="{{ t.name }}">{{ t.name }}</span>
         {% endfor %}
       </div>
+      {% endif %}
     </div>
   </article>
   {% endfor %}
@@ -57,9 +62,9 @@ pagination:
   {% else %}
     <span class="pagination-link disabled">← Newer</span>
   {% endif %}
-  
+
   <span class="pagination-info">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  
+
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">Older →</a>
   {% else %}
