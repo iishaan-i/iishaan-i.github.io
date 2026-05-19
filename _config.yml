@@ -9,6 +9,13 @@ lang: en
 markdown: kramdown
 permalink: /notes/papers/:title/
 
+# Use GitHub-Flavored Markdown so a single newline in the Obsidian source
+# becomes a visual line break (Obsidian's preview behavior), instead of
+# being collapsed to a space by default kramdown.
+kramdown:
+  input: GFM
+  hard_wrap: true
+
 # Plugins
 plugins:
   - jekyll-paginate

@@ -229,10 +229,50 @@ def downshift_headings(body: str) -> str:
     return "".join(pieces)
 
 
+_LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]|\d+\.)\s+")
+_FENCE_RE = re.compile(r"^\s*```")
+
+
+def break_lists_before_paragraphs(body: str) -> str:
+    """Insert a blank line between a list item and a following plain line.
+
+    Obsidian's preview treats a non-bullet line after a bullet as a new
+    paragraph that ends the list. Kramdown instead treats it as a lazy
+    continuation of the previous `<li>`, so the text (e.g. a "Register
+    Adapters:" mini-header) ends up nested inside the bullet. Inserting
+    the blank line that Obsidian implicitly assumes restores the intended
+    structure.
+    """
+    lines = body.split("\n")
+    out: list[str] = []
+    in_code = False
+    for i, line in enumerate(lines):
+        out.append(line)
+        if _FENCE_RE.match(line):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if not _LIST_ITEM_RE.match(line):
+            continue
+        if i + 1 >= len(lines):
+            continue
+        nxt = lines[i + 1]
+        if not nxt.strip():
+            continue
+        if _LIST_ITEM_RE.match(nxt):
+            continue
+        if nxt.startswith((" ", "\t")):
+            continue
+        out.append("")
+    return "\n".join(out)
+
+
 def transform_body(body: str) -> str:
     body = strip_wikilinks_in_text(body)
     body = REFERENCES_HEADING_RE.sub("", body)
     body = downshift_headings(body)
+    body = break_lists_before_paragraphs(body)
     body = protect_math_for_kramdown(body)
     return body
 
