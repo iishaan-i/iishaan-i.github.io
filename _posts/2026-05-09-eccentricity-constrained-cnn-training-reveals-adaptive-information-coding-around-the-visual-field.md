@@ -39,7 +39,7 @@ There are many interesting questions here. This paper focuses on the problem of 
 
 ## What they did
 
-To actually test this hypothesis, it is necessary to use a large-scale naturalistic egocentric dataset that incorporate eye movement behavior, so they used the Visual Experience Dataset (VEDB). In particular, they trained convolutional neural networks that were constrained by eccentricity by extracting VEDB frames and created four conditions:
+To actually test this hypothesis, it is necessary to use a large-scale naturalistic egocentric dataset that incorporate eye movement behavior, so they used the Visual Experience Dataset (VEDB). They trained CNNs that were constrained by eccentricity by extracting VEDB frames and created four conditions:
 - Baseline: unmodified 224x224 video frame
 - Fovea-Gaze: A 112×112 pixel crop taken from each frame, centered on the participant's tracked gaze position. The crop was then upsampled back to 224×224. The region outside the crop was masked with gray. Despite the name, they specifically note not to interpret this as a simulation of biological fovea.
 - Periph: The complement of Fovea-Gaze. The full frame is kept, but the central region around the gaze point is masked out with a gray circle.
